@@ -1,0 +1,106 @@
+get:
+  tags:
+    - Users
+  summary: List all users
+  operationId: getAllUsers
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserDTO'
+    '401':
+      $ref: '#/components/responses/Unauthorized'
+    '403':
+      $ref: '#/components/responses/Forbidden'
+    '500':
+      $ref: '#/components/responses/InternalError'
+
+post:
+  tags:
+    - Users
+  summary: Create a new user
+  operationId: createUser
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/UserCreateDTO'
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserDTO'
+    '400':
+      description: Bad Request - Validációs hiba
+    '401':
+      $ref: '#/components/responses/Unauthorized'
+
+# Itt definiálod a DTO-kat ugyanabban a fájlban
+components:
+  responses:
+    Unauthorized:
+      description: Nincs bejelentkezve
+    Forbidden:
+      description: Nincs jogosultsága a művelethez
+    InternalError:
+      description: Szerver oldali hiba történt
+  schemas:
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          $ref: '#/components/schemas/UserRole'
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+    UserCreateDTO:
+      type: object
+      required:
+        - username
+        - email
+        - password # Itt kötelező!
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          format: password # Ez jelzi a generátornak, hogy érzékeny adat
+        role:
+          $ref: '#/components/schemas/UserRole'
+
+    UserRole:
+      type: string
+      enum:
+        - USER
+        - ADMIN
+        - TECHNICAL
+
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        message:
+          type: string
+        code:
+          type: string
