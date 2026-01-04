@@ -4,6 +4,7 @@ import com.example.hvbackend.dto.UserCreateDTO;
 import com.example.hvbackend.dto.UserDTO;
 import com.example.hvbackend.dto.UserRole;
 import com.example.hvbackend.userManagement.entity.User;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -12,7 +13,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -72,6 +76,44 @@ public class UserServiceTest {
 
         // Ellenőrizzük, hogy mindenki lefutott-e egyszer
         verify(userRepository, times(1)).save(any());
+    }
+
+    @Test
+    void changeUserEnabledStatus() {
+
+        Long userId = 1L;
+        User user = User.builder()
+                .id(1L)
+                .username("teszt_elek")
+                .role(com.example.hvbackend.userManagement.entity.UserRole.USER)
+                .enabled(true)
+                .build();
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+        userService.changeUserEnabledStatus(userId, false);
+
+        ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userRepository).save(userCaptor.capture());
+
+        // Itt ellenőrizzük, hogy a Service tényleg átállította-e!
+        assertThat(userCaptor.getValue().isEnabled()).isFalse();
+
+    }
+
+    @Test
+    void changeUserEnabledStatus_ShouldThrowException_WhenUserNotFound() {
+        // ARRANGE
+        Long userId = 999L;
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        // ACT & ASSERT
+        assertThrows(EntityNotFoundException.class, () -> {
+            userService.changeUserEnabledStatus(userId, false);
+        });
+
+        // Ellenőrizzük, hogy mentés PRÓBÁJA sem történt
+        verify(userRepository, never()).save(any());
     }
 
     UserCreateDTO createUserDTO(String name, String email, UserRole role, String password){
