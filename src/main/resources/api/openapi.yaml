@@ -3,13 +3,21 @@ info:
   title: Hausverwaltung API
   version: 1.0.0
 paths:
+
+#user management
   /api/users:
     $ref: './paths/users.yaml'
 
-
+#building management
   /api/buildings:
     $ref: './paths/building.yaml'
 
-
+#ticket management
   /api/tickets:
     $ref: './paths/ticket.yaml'
+  /api/ticket/{id}:
+    $ref: './paths/ticket-details.yaml'
+
+#mechanic management
+  /api/mechanics:
+    $ref: './paths/mechanic.yaml'

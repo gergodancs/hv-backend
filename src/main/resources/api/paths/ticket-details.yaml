@@ -1,0 +1,66 @@
+get:
+  tags: [Tickets]
+  summary: Egy konkrét hibajegy lekérése ID alapján
+  operationId: getTicketById
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: A hibajegy egyedi azonosítója
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: './ticket.yaml#/components/schemas/TicketDTO'
+    '404':
+      description: A hibajegy nem található
+      content:
+        application/json:
+          schema:
+            $ref: './users.yaml#/components/schemas/ErrorResponse'
+
+update:
+  tags: [Tickets]
+  summary: Egy konkrét hibajegy frissítése ID alapján
+  operationId: updateTicketById
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: A hibajegy egyedi azonosítója
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: './ticket.yaml#/components/schemas/TicketDTO'
+
+
+delete:
+  tags: [Tickets]
+  summary: Egy konkrét hibajegy törlése ID alapján
+  operationId: deleteTicketById
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: A hibajegy egyedi azonosítója
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '204':
+      description: A hibajegy sikeresen törölve
+    '404':
+      description: A hibajegy nem található
+      content:
+        application/json:
+          schema:
+            $ref: './users.yaml#/components/schemas/ErrorResponse'

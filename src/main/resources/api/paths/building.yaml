@@ -11,6 +11,26 @@ get:
             type: array
             items:
               $ref: '#/components/schemas/BuildingDTO'
+
+post:
+  tags: [Buildings]
+  summary: Create a new building
+  operationId: createBuilding
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BuildingCreateDTO'
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BuildingDTO'
+
+
+
 components:
   schemas:
     BuildingDTO:
@@ -28,6 +48,20 @@ components:
           type: string
         address:
           type: string
+
+    BuildingCreateDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        postCode:
+          type: integer
+          format: int64
+        city:
+          type: string
+        address:
+          type: string
+
 
 
 

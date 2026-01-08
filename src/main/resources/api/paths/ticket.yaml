@@ -1,11 +1,29 @@
+get:
+  tags: [Tickets]
+  summary: Get all tickets
+  operationId: getAllTickets
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TicketDTO'
+
+
+
+
 post:
   tags: [Tickets]
   summary: Új hibajegy rögzítése
+  operationId: createTicket
   requestBody:
     content:
       application/json:
         schema:
-          $ref: '#/components/schemas/TicketCreateDTO' # Ezt is definiálni kell majd hasonlóan a UserCreateDTO-hoz
+          $ref: '#/components/schemas/TicketCreateDTO'
   responses:
     '201':
       description: Created
