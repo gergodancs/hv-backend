@@ -27,6 +27,14 @@ public class UserService {
     }
 
     public UserDTO createNewUser(UserCreateDTO createDTO) {
+
+        if (userRepository.existsByEmail(createDTO.getEmail())) {
+            throw new BusinessException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        }
+
+        if (userRepository.existsByUsername(createDTO.getUsername())) {
+            throw new BusinessException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        }
         User user = userMapper.toEntity(createDTO);
         // Itt történik a varázslat
         user.setPassword(passwordEncoder.encode(createDTO.getPassword()));

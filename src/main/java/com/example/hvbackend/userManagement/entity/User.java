@@ -2,15 +2,13 @@ package com.example.hvbackend.userManagement.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users") // A 'user' foglalt szó a Postgresben, ezért érdemes 'users'-nek hívni a táblát
+@Table(name = "users")
 @Getter
 @Setter
 @Builder
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -31,8 +29,16 @@ public class User {
     private boolean enabled = true;
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private OffsetDateTime createdAt = OffsetDateTime.now();
+    private LocalDateTime createdAt; // Sima LocalDateTime-ra váltottunk
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @PrePersist
+    protected void onCreate() {
+        // Csak ez az egy hely állítja be a dátumot mentés előtt
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
 }

@@ -1,0 +1,62 @@
+post:
+  tags: [Tickets]
+  summary: Új hibajegy rögzítése
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/TicketCreateDTO' # Ezt is definiálni kell majd hasonlóan a UserCreateDTO-hoz
+  responses:
+    '201':
+      description: Created
+
+components:
+  schemas:
+    TicketDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        reporterEmail:
+          type: string
+        description:
+          type: string
+        priority:
+          $ref: '#/components/schemas/Priority'
+        status:
+          $ref: '#/components/schemas/TicketStatus'
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        buildingId:
+          type: integer
+          format: int64
+        mechanicId:
+          type: integer
+          format: int64
+
+    TicketCreateDTO:
+      type: object
+      properties:
+        reporterEmail:
+          type: string
+        description:
+          type: string
+        buildingId:
+          type: integer
+          format: int64
+
+    Priority:
+      type: string
+      enum: [LOW, MEDIUM, HIGH, URGENT]
+
+    TicketStatus:
+      type: string
+      enum: [REPORTED, ASSIGNED, IN_PROGRESS, FINISHED]

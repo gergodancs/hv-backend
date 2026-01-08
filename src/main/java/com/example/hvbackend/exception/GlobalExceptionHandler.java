@@ -25,4 +25,13 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, status);
     }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleAllUncaughtException(Exception ex) {
+        ErrorResponse response = new ErrorResponse(
+                "INTERNAL_SERVER_ERROR",
+                "Váratlan hiba történt a szerver oldalon.",
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

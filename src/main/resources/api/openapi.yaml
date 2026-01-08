@@ -5,3 +5,11 @@ info:
 paths:
   /api/users:
     $ref: './paths/users.yaml'
+
+
+  /api/buildings:
+    $ref: './paths/building.yaml'
+
+
+  /api/tickets:
+    $ref: './paths/ticket.yaml'

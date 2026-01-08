@@ -13,13 +13,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // Fejlesztés alatt kikapcsoljuk
-                .cors(cors -> cors.configure(http)) // Összekötjük a fenti WebConfig-gal
+                .csrf(AbstractHttpConfigurer::disable) // CSRF kikapcsolása
                 .authorizeHttpRequests(auth -> auth
+                        // Swagger engedélyezése
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-                        .anyRequest().permitAll() // Átmenetileg mindenkit beengedünk
+                        // Minden más kérés is engedélyezett egyelőre (IT teszthez és fejlesztéshez)
+                        .anyRequest().permitAll()
                 );
 
         return http.build();
@@ -28,15 +29,5 @@ public class SecurityConfig {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable()) // Fejlesztés alatt/IT teszthez érdemes kikapcsolni
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // Egyelőre engedjünk át mindent, hogy az IT fusson
-                );
-        return http.build();
     }
 }

@@ -1,0 +1,33 @@
+get:
+  tags: [Buildings]
+  summary: All buildings
+  operationId: getAllBuildings
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/BuildingDTO'
+components:
+  schemas:
+    BuildingDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        postCode:
+          type: integer
+          format: int64
+        city:
+          type: string
+        address:
+          type: string
+
+
+

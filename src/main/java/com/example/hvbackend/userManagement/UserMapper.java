@@ -8,6 +8,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     // Entitás -> DTO (Lekérdezéskor)
@@ -21,6 +25,16 @@ public interface UserMapper {
     // DTO -> Entitás (Létrehozáskor)
     @Mapping(target = "id", ignore = true)
     User toEntity(UserCreateDTO userCreateDto);
+
+    // LocalDateTime -> OffsetDateTime (DTO-ba kifelé)
+    default OffsetDateTime mapToOffset(LocalDateTime localDateTime) {
+        return localDateTime == null ? null : localDateTime.atOffset(ZoneOffset.UTC);
+    }
+
+    // OffsetDateTime -> LocalDateTime (Entitásba befelé)
+    default LocalDateTime mapToLocal(OffsetDateTime offsetDateTime) {
+        return offsetDateTime == null ? null : offsetDateTime.toLocalDateTime();
+    }
 
     // --- ENUM KONVERZIÓ ---
     // Mivel a két Enum neve megegyezik, de a csomagjuk nem,
