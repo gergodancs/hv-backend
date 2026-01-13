@@ -72,10 +72,6 @@ components:
 
     UserCreateDTO:
       type: object
-      required:
-        - username
-        - email
-        - password # Itt kötelező!
       properties:
         username:
           type: string
@@ -86,6 +82,10 @@ components:
           format: password # Ez jelzi a generátornak, hogy érzékeny adat
         role:
           $ref: '#/components/schemas/UserRole'
+      required:
+        - username
+        - email
+        - password
 
     UserRole:
       type: string

@@ -1,5 +1,5 @@
 get:
-  tags: [Tickets]
+  tags: [ Tickets ]
   summary: Egy konkrét hibajegy lekérése ID alapján
   operationId: getTicketById
   parameters:
@@ -24,8 +24,8 @@ get:
           schema:
             $ref: './users.yaml#/components/schemas/ErrorResponse'
 
-update:
-  tags: [Tickets]
+put:
+  tags: [ Tickets ]
   summary: Egy konkrét hibajegy frissítése ID alapján
   operationId: updateTicketById
   parameters:
@@ -41,10 +41,17 @@ update:
       application/json:
         schema:
           $ref: './ticket.yaml#/components/schemas/TicketDTO'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: './ticket.yaml#/components/schemas/TicketDTO'
 
 
 delete:
-  tags: [Tickets]
+  tags: [ Tickets ]
   summary: Egy konkrét hibajegy törlése ID alapján
   operationId: deleteTicketById
   parameters:

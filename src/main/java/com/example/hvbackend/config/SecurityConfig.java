@@ -16,6 +16,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable) // CSRF kikapcsolása
+                .cors(cors -> cors.configure(http))
                 .authorizeHttpRequests(auth -> auth
                         // Swagger engedélyezése
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()

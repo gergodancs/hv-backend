@@ -30,6 +30,33 @@ post:
             $ref: '#/components/schemas/BuildingDTO'
 
 
+put:
+  tags: [Buildings]
+  summary: Update a building
+  operationId: updateBuilding
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Az epulet egyedi azonosítója
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BuildingDTO'
+  responses:
+    201:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BuildingDTO'
+
+
+
 
 components:
   schemas:
@@ -48,6 +75,21 @@ components:
           type: string
         address:
           type: string
+        contactPerson:
+          type: string
+        contactPhone:
+          type: string
+        buildingType:
+          type: string
+          enum: [ RESIDENTIAL, OFFICE, INDUSTRIAL ]
+        active:
+          type: boolean
+      required:
+        - id
+        - name
+        - postCode
+        - city
+        - address
 
     BuildingCreateDTO:
       type: object
@@ -61,6 +103,20 @@ components:
           type: string
         address:
           type: string
+        contactPerson:
+          type: string
+        contactPhone:
+          type: string
+        buildingType:
+          type: string
+          enum: [ RESIDENTIAL, OFFICE, INDUSTRIAL ]
+        active:
+          type: boolean
+      required:
+        - name
+        - postCode
+        - city
+        - address
 
 
 

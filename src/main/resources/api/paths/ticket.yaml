@@ -59,6 +59,16 @@ components:
         mechanicId:
           type: integer
           format: int64
+      required:
+        - reporterEmail
+        - description
+        - buildingId
+        - priority
+        - status
+        - createdAt
+        - startedAt
+        - buildingId
+        - mechanicId
 
     TicketCreateDTO:
       type: object
@@ -70,6 +80,10 @@ components:
         buildingId:
           type: integer
           format: int64
+      required:
+        - reporterEmail
+        - description
+        - buildingId
 
     Priority:
       type: string

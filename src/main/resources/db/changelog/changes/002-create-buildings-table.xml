@@ -19,4 +19,16 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="20260110-01-add-building-details" author="bap20">
+        <addColumn tableName="buildings">
+            <column name="contact_person" type="VARCHAR(255)"/>
+            <column name="contact_phone" type="VARCHAR(255)"/>
+            <column name="building_type" type="VARCHAR(50)"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_maintenance_date" type="DATE"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

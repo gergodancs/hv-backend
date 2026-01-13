@@ -39,7 +39,14 @@ components:
         profession:
           type: string
         serviceArea:
-          type: integer # Korábban beszéltük, hogy numerikus legyen a kerület miatt
+          type: integer
+          format: int64
+      required:
+        - name
+        - email
+        - phoneNumber
+        - profession
+        - serviceArea
 
     # 2. A teljes DTO "örököl" a CreateDTO-ból és hozzáadja az ID-t
     MechanicDTO:
@@ -50,3 +57,5 @@ components:
             id:
               type: integer
               format: int64
+          required:
+            - id

@@ -26,6 +26,10 @@ public class Building {
 
     private String city;
     private String address;
+    private String contactPerson;
+    private String contactPhone;
+    private String buildingType;
+    private Boolean active;
 
     @OneToMany(mappedBy = "building")
     private List<Ticket> tickets;
