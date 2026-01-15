@@ -4,6 +4,7 @@ import com.example.hvbackend.dto.MechanicCreateDTO;
 import com.example.hvbackend.dto.MechanicDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.time.LocalDateTime;
@@ -19,6 +20,9 @@ public interface MechanicMapper {
 
     @Mapping(target = "id", ignore = true)
     Mechanic toEntity(MechanicCreateDTO mechanicCreateDTO);
+
+    @Mapping(target = "id", ignore = true)
+    void updateEntityFromDto(MechanicDTO mechanicDTO, @MappingTarget Mechanic existingMechanic);
 
     // LocalDateTime -> OffsetDateTime (DTO-ba kifelé)
     default OffsetDateTime mapToOffset(LocalDateTime localDateTime) {

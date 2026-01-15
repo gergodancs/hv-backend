@@ -42,15 +42,14 @@ post:
     '401':
       $ref: '#/components/responses/Unauthorized'
 
-# Itt definiálod a DTO-kat ugyanabban a fájlban
 components:
   responses:
     Unauthorized:
-      description: Nincs bejelentkezve
+      description: not authenticated
     Forbidden:
-      description: Nincs jogosultsága a művelethez
+      description: has no permission
     InternalError:
-      description: Szerver oldali hiba történt
+      description: server error
   schemas:
     UserDTO:
       type: object

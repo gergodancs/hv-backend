@@ -30,34 +30,6 @@ post:
             $ref: '#/components/schemas/BuildingDTO'
 
 
-put:
-  tags: [Buildings]
-  summary: Update a building
-  operationId: updateBuilding
-  parameters:
-    - name: id
-      in: path
-      required: true
-      description: Az epulet egyedi azonosítója
-      schema:
-        type: integer
-        format: int64
-  requestBody:
-    content:
-      application/json:
-        schema:
-          $ref: '#/components/schemas/BuildingDTO'
-  responses:
-    201:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BuildingDTO'
-
-
-
-
 components:
   schemas:
     BuildingDTO:

@@ -7,10 +7,14 @@ paths:
 #user management
   /api/users:
     $ref: './paths/users.yaml'
+  /api/user/{id}:
+    $ref: './paths/user-details.yaml'
 
 #building management
   /api/buildings:
     $ref: './paths/building.yaml'
+  /api/building/{id}:
+    $ref: './paths/building-details.yaml'
 
 #ticket management
   /api/tickets:
@@ -21,3 +25,5 @@ paths:
 #mechanic management
   /api/mechanics:
     $ref: './paths/mechanic.yaml'
+  /api/mechanic/{id}:
+    $ref: './paths/mechanic-details.yaml'

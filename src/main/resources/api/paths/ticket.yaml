@@ -13,11 +13,9 @@ get:
               $ref: '#/components/schemas/TicketDTO'
 
 
-
-
 post:
   tags: [Tickets]
-  summary: Új hibajegy rögzítése
+  summary: create ticket
   operationId: createTicket
   requestBody:
     content:

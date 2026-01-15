@@ -16,6 +16,13 @@ post:
   tags: [Mechanic]
   operationId: createMechanic
   summary: Create a mechanic
+  requestBody:
+    description: Mechanic object that needs to be added to the store
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/MechanicCreateDTO'
   responses:
     '201':
       description: Created

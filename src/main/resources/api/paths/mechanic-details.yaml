@@ -1,12 +1,12 @@
 get:
-  tags: [ Tickets ]
-  summary: get ticket by id
-  operationId: getTicketById
+  tags: [ Mechanic ]
+  summary: get Mechanic by id
+  operationId: getMechanicById
   parameters:
     - name: id
       in: path
       required: true
-      description: ticket id
+      description: mechanic id
       schema:
         type: integer
         format: int64
@@ -16,23 +16,23 @@ get:
       content:
         application/json:
           schema:
-            $ref: './ticket.yaml#/components/schemas/TicketDTO'
+            $ref: './mechanic.yaml#/components/schemas/MechanicDTO'
     '404':
-      description: ticket not found
+      description: mechanic not found
       content:
         application/json:
           schema:
             $ref: './users.yaml#/components/schemas/ErrorResponse'
 
 put:
-  tags: [ Tickets ]
-  summary: update ticket by id
-  operationId: updateTicketById
+  tags: [ Mechanic ]
+  summary: update a mechanic
+  operationId: updateMechanicById
   parameters:
     - name: id
       in: path
       required: true
-      description: ticket id
+      description: mechanic id
       schema:
         type: integer
         format: int64
@@ -40,39 +40,38 @@ put:
     content:
       application/json:
         schema:
-          $ref: './ticket.yaml#/components/schemas/TicketDTO'
+          $ref: './mechanic.yaml#/components/schemas/MechanicDTO'
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: './ticket.yaml#/components/schemas/TicketDTO'
+            $ref: './mechanic.yaml#/components/schemas/MechanicDTO'
     '404':
-      description: ticket not found
+      description: mechanic not found
       content:
         application/json:
           schema:
             $ref: './users.yaml#/components/schemas/ErrorResponse'
 
-
 delete:
-  tags: [ Tickets ]
-  summary: delete ticket by id
-  operationId: deleteTicketById
+  tags: [ Mechanic ]
+  summary: delete a mechanic
+  operationId: deleteMechanicById
   parameters:
     - name: id
       in: path
       required: true
-      description: ticket id
+      description: mechanic id
       schema:
         type: integer
         format: int64
   responses:
     '204':
-      description: ticket deleted
+      description: mechanic deleted
     '404':
-      description: ticket not found
+      description: mechanic not found
       content:
         application/json:
           schema:

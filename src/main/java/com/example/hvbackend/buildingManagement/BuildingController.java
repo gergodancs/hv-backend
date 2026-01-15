@@ -28,13 +28,19 @@ public class BuildingController implements BuildingsApi {
     }
 
     @Override
-    public ResponseEntity<BuildingDTO> updateBuilding(Long id, BuildingDTO buildingDTO) {
+    public ResponseEntity<BuildingDTO> updateBuildingById(Long id, BuildingDTO buildingDTO) {
         return ResponseEntity.ok(buildingService.updateBuilding(id, buildingDTO));
     }
 
-//    @Override
-//    public ResponseEntity<BuildingDTO> getBuildingById(Long id) {
-//        return ResponseEntity.ok(buildingService.getBuildingById(id));
-//    }
+    @Override
+    public ResponseEntity<BuildingDTO> getBuildingById(Long id) {
+        return ResponseEntity.ok(buildingService.getBuildingById(id));
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteBuildingById(Long id) {
+        buildingService.deleteBuildingById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

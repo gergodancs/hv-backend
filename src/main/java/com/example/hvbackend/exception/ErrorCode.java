@@ -7,7 +7,8 @@ public enum ErrorCode {
     // A belső kód most már megegyezik az Enum névvel, vagy annak kisbetűs változatával
     USER_NOT_FOUND("USER_NOT_FOUND", "A kért felhasználó nem található."),
     EMAIL_ALREADY_EXISTS("EMAIL_ALREADY_EXISTS", "Ez az e-mail cím már foglalt."),
-    BUILDING_NOT_FOUND("BUILDING_NOT_FOUND", "A kért épület nem található.");
+    BUILDING_NOT_FOUND("BUILDING_NOT_FOUND", "A kért épület nem található."),
+    MECHANIC_NOT_FOUND("MECHANIC_NOT_FOUND", "A kért szerelő nem található.");
 
     private final String code;
     private final String message;

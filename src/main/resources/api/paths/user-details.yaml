@@ -1,12 +1,12 @@
 get:
-  tags: [ Tickets ]
-  summary: get ticket by id
-  operationId: getTicketById
+  tags: [ Users ]
+  summary: Get a user by id
+  operationId: getBuildingById
   parameters:
     - name: id
       in: path
       required: true
-      description: ticket id
+      description: user id
       schema:
         type: integer
         format: int64
@@ -16,23 +16,23 @@ get:
       content:
         application/json:
           schema:
-            $ref: './ticket.yaml#/components/schemas/TicketDTO'
+            $ref: './users.yaml#/components/schemas/UserDTO'
     '404':
-      description: ticket not found
+      description: the user was not found
       content:
         application/json:
           schema:
             $ref: './users.yaml#/components/schemas/ErrorResponse'
 
 put:
-  tags: [ Tickets ]
-  summary: update ticket by id
-  operationId: updateTicketById
+  tags: [Users]
+  summary: Update a user
+  operationId: updateUserById
   parameters:
     - name: id
       in: path
       required: true
-      description: ticket id
+      description: user id
       schema:
         type: integer
         format: int64
@@ -40,16 +40,16 @@ put:
     content:
       application/json:
         schema:
-          $ref: './ticket.yaml#/components/schemas/TicketDTO'
+          $ref: './users.yaml#/components/schemas/UserDTO'
   responses:
-    '200':
+    201:
       description: OK
       content:
         application/json:
           schema:
-            $ref: './ticket.yaml#/components/schemas/TicketDTO'
-    '404':
-      description: ticket not found
+            $ref: './users.yaml#/components/schemas/UserDTO'
+    404:
+      description: user not found
       content:
         application/json:
           schema:
@@ -57,22 +57,22 @@ put:
 
 
 delete:
-  tags: [ Tickets ]
-  summary: delete ticket by id
-  operationId: deleteTicketById
+  tags: [ Users ]
+  summary: delete a user
+  operationId: deleteUserById
   parameters:
     - name: id
       in: path
       required: true
-      description: ticket id
+      description: user id
       schema:
         type: integer
         format: int64
   responses:
     '204':
-      description: ticket deleted
+      description: DELETED
     '404':
-      description: ticket not found
+      description: user not found
       content:
         application/json:
           schema:
