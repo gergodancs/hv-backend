@@ -28,7 +28,7 @@ public class BuildingController implements BuildingsApi {
     }
 
     @Override
-    public ResponseEntity<BuildingDTO> updateBuildingById(Long id, BuildingDTO buildingDTO) {
+    public ResponseEntity<BuildingDTO> updateBuilding(Long id, BuildingDTO buildingDTO) {
         return ResponseEntity.ok(buildingService.updateBuilding(id, buildingDTO));
     }
 

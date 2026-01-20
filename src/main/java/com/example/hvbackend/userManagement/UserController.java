@@ -18,16 +18,13 @@ public class UserController implements UsersApi {
 
     @Override
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        // Meghívjuk a service-t, ami már DTO-kkal tér vissza
         List<UserDTO> users = userService.findAllUsers();
         return ResponseEntity.ok(users);
     }
 
     @Override
     public ResponseEntity<UserDTO> createUser(UserCreateDTO userCreateDTO) {
-        // Létrehozzuk az új felhasználót
         UserDTO savedUser = userService.createNewUser(userCreateDTO);
-        // 201 Created státusszal térünk vissza
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 }

@@ -1,4 +1,10 @@
 package com.example.hvbackend.ticketManagement;
 
-public interface TicketRepository {
+
+import com.example.hvbackend.ticketManagement.entity.Ticket;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TicketRepository extends JpaRepository<Ticket, Long> {
 }

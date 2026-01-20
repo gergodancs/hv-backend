@@ -26,8 +26,8 @@ get:
 
 put:
   tags: [ Tickets ]
-  summary: update ticket by id
-  operationId: updateTicketById
+  summary: update ticket
+  operationId: updateTicket
   parameters:
     - name: id
       in: path

@@ -27,7 +27,7 @@ get:
 put:
   tags: [ Mechanic ]
   summary: update a mechanic
-  operationId: updateMechanicById
+  operationId: updateMechanic
   parameters:
     - name: id
       in: path

@@ -5,6 +5,7 @@ import com.example.hvbackend.dto.TicketDTO;
 import com.example.hvbackend.ticketManagement.entity.Ticket;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,9 @@ public interface TicketMapper {
     @Mapping(target = "buildingId", source = "building.id")
     @Mapping(target = "mechanicId", source = "mechanic.id")
     TicketDTO toDto(Ticket ticket);
+
+    @Mapping(target = "id", ignore = true)
+    void updateEntityFromDto(TicketDTO ticketDTO, @MappingTarget Ticket existingTicket);
 
     // LocalDateTime -> OffsetDateTime (DTO-ba kifelé)
     default OffsetDateTime mapToOffset(LocalDateTime localDateTime) {

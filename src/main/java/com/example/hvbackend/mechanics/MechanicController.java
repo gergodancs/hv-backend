@@ -26,7 +26,7 @@ public class MechanicController implements MechanicApi {
     }
 
     @Override
-    public ResponseEntity<MechanicDTO> updateMechanicById(Long id, MechanicDTO mechanicDTO) {
+    public ResponseEntity<MechanicDTO> updateMechanic(Long id, MechanicDTO mechanicDTO) {
         return ResponseEntity.ok(mechanicService.updateMechanic(id, mechanicDTO));
     }
 

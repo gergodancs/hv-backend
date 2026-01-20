@@ -28,7 +28,8 @@ public class Building {
     private String address;
     private String contactPerson;
     private String contactPhone;
-    private String buildingType;
+    @Enumerated(EnumType.STRING)
+    private BuildingType buildingType;
     private Boolean active;
 
     @OneToMany(mappedBy = "building")

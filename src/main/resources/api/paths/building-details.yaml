@@ -27,7 +27,7 @@ get:
 put:
   tags: [ Buildings ]
   summary: Update a building
-  operationId: updateBuildingById
+  operationId: updateBuilding
   parameters:
     - name: id
       in: path
