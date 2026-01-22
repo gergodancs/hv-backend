@@ -67,10 +67,7 @@ components:
         - buildingId
         - priority
         - status
-        - createdAt
-        - startedAt
         - buildingId
-        - mechanicId
 
     TicketCreateDTO:
       type: object
